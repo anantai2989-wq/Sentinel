@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentinel Audit Scanner</title>
+    <style>
+        body { font-family: sans-serif; background: #000; color: #0f0; text-align: center; padding: 50px; }
+        textarea { width: 80%; height: 100px; margin: 20px 0; padding: 10px; }
+        button { background: #0f0; color: #000; padding: 10px 20px; cursor: pointer; border: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Sentinel Audit Engine</h1>
+    <textarea id="msg" placeholder="Paste suspicious link or message here..."></textarea><br>
+    <button onclick="scan()">RUN FORENSIC SCAN</button>
+    <script>
+        async function scan() {
+            const text = document.getElementById('msg').value;
+            // Yahan apna n8n production URL dalo
+            const url = 'https://anant2989.app.n8n.cloud/webhook/30a93eaf-aafe-41f7-b594-4f35df4a3356'; 
+            await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text })
+            });
+            alert('Audit Started! Check your email for the forensic report.');
+        }
+    </script>
+</body>
+</html>
